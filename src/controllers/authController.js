@@ -8,11 +8,11 @@ try {
     const admin= await Admin.Login(req.body.email,req.body.password)
     const token= await admin.generateJWT()
 
-    res.cookie("c_a",token,{maxAge:1000*60*60*4})
+    res.cookie("c_a",token,{maxAge:1000*60*60*4,httpOnly: true})
     res.send("basarılı giris")
 
 } catch (error) {
-    res.send("hatalı giris")
+    res.send("hata")
 }
 }
 

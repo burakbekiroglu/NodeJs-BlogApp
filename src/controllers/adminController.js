@@ -53,3 +53,12 @@ exports.UpdateAdmin= async (req, res) => {
 }
 
 
+exports.AdminHomePage=async (req, res)=> {
+
+    try{
+        res.render("./Admin/Index.ejs",{layout:"./layout/AdminLayout.ejs"})
+     }catch (error) {
+         res.send("hata olustukee")
+     }
+}
+
