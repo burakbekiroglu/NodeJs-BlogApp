@@ -8,4 +8,7 @@ router.delete("/hard-delete/:id",HardDeleteAdmin)
 router.put("/update/:id",UpdateAdmin)
 router.put("/delete/id",DeleteAdmin)
 
+
+
+
 module.exports =router

@@ -52,7 +52,6 @@ exports.UpdateAdmin= async (req, res) => {
     }
 }
 
-
 exports.AdminHomePage=async (req, res)=> {
 
     try{
@@ -61,4 +60,7 @@ exports.AdminHomePage=async (req, res)=> {
          res.send("hata olustukee")
      }
 }
+
+
+
 

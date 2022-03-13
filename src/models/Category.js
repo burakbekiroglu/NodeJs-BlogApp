@@ -15,7 +15,7 @@ const categorySchema =  new mongoose.Schema({
     default:true
 },
 isDeleted: {
-    type:Boolen,
+    type:Boolean,
     required:true,
     default:false
 }
@@ -24,4 +24,4 @@ isDeleted: {
 
 
 
-module.exports= new mongoose.Model("Category",categorySchema)
+module.exports= new mongoose.model("Category",categorySchema)

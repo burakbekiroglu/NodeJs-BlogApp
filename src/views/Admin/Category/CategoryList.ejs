@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Kategoriler</h3>
+      </div> 
+      <div class="card-body">
+        <table id="categories-table" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Kategori Adı</th>
+            <th>Aktif Mi</th>
+            <th>Silindi Mi</th>
+            <th>İşlemler</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+            <% if (categories.length>0) { %>
+              <% categories.forEach(category => { %>
+                <tr>
+                  <td><%-category.name %></td>
+                  <td><%-category.isActive %></td>
+                  <td><%-category.isDeleted %></td>
+                  <td>
+                    <form action="/category/delete/<%-category._id %>?_method=PUT" method="POST">
+                      <button type="submit"  class="btn btn-danger btn-block mb-1"><i class="fas fa-trash"></i> Sil</button> 
+                    </form>
+                    <form action="/category/edit/<%-category._id %>?_method=Get" method="POST">
+                      <button type="submit"  class="btn btn-success btn-block mb-1"><i class="fas fa-edit"></i> Düzenle</button> 
+                    </form>
+                  </td> 
+                </tr>
+            <% }) %>
+            <% } %>
+
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Kategori Adı</th>
+            <th>Aktif Mi</th>
+            <th>Silindi Mi</th>
+            <th>İşlemler</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+</div>

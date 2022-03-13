@@ -1,0 +1,29 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title"> Kategori Düzenle</h3>
+        </div>
+        
+        <form action="/category/update/<%-category._id %>?_method=PUT" method="post" >
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Kategori Adı</label>
+              <input type="text" name="name" class="form-control" value="<%-category.name%> " placeholder="Kategori adı giriniz...">
+            </div>   
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="isActive"  value="true" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Aktif Mi</label>
+              </div>
+          </div>
+         
+          <div class="card-footer">
+            <button type="submit" class="btn btn-success btn-block">Düzenle</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+  </div>

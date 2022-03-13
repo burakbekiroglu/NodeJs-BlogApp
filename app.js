@@ -13,6 +13,7 @@ const methodOverride = require('method-override')
 
 const AdminRouter = require("./src/routers/adminRouter")
 const AuthRouter = require("./src/routers/authRouter")
+const CategoryRouter=require("./src/routers/categoryRouter")
 
 
 
@@ -42,6 +43,7 @@ app.get("/",(req, res) => {
 })
 app.use("/admin",AdminRouter)
 app.use("/auth",AuthRouter)
+app.use("/category",CategoryRouter)
 
 
 
@@ -52,7 +54,7 @@ app.use("/auth",AuthRouter)
 
 app.use((req,res)=>{
 
-    res.redirect("/")
+    res.send("rota yok")
 })
 
 
