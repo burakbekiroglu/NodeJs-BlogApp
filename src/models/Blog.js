@@ -46,9 +46,14 @@ const blogSchema =  new mongoose.Schema({
         default:true
     },
     isDeleted: {
-        type:Boolen,
+        type:Boolean,
         required:true,
         default:false
+    },
+    categoryId: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Category',
+        required:true
     }
 
 },{ collection:"blogs",timestamps:true})
@@ -62,7 +67,7 @@ blogSchema.pre("validate",  async function(next){
     }
     if(this.text){
 
-        this.sanitizedHTML= await dompurify.sanitize(marked(this.text))
+        this.sanitizedHTML= await dompurify.sanitize(this.text)
     }
     next()
 })
@@ -71,4 +76,4 @@ blogSchema.pre("validate",  async function(next){
 
 
 
-module.exports = new mongoose.Model("Blog",blogSchema)
+module.exports = new mongoose.model("Blog",blogSchema)

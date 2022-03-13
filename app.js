@@ -14,7 +14,7 @@ const methodOverride = require('method-override')
 const AdminRouter = require("./src/routers/adminRouter")
 const AuthRouter = require("./src/routers/authRouter")
 const CategoryRouter=require("./src/routers/categoryRouter")
-
+const BlogRouter = require("./src/routers/blogRouter")
 
 
 dotenv.config({ path: './src/config/config.env' });
@@ -44,6 +44,7 @@ app.get("/",(req, res) => {
 app.use("/admin",AdminRouter)
 app.use("/auth",AuthRouter)
 app.use("/category",CategoryRouter)
+app.use("/blog",BlogRouter)
 
 
 
