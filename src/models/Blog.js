@@ -9,6 +9,7 @@ const dompurify=createDomPurify(new JSDOM().window)
 
 
 
+
 const blogSchema =  new mongoose.Schema({
 
 
@@ -59,6 +60,8 @@ const blogSchema =  new mongoose.Schema({
 },{ collection:"blogs",timestamps:true})
 
 
+
+
 blogSchema.pre("validate",  async function(next){
 
     //
@@ -71,6 +74,8 @@ blogSchema.pre("validate",  async function(next){
     }
     next()
 })
+
+
 
 
 

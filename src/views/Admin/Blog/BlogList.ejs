@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Blog Yazıları</h3>
+      </div> 
+      <div class="card-body">
+        <table id="categories-table" class="table table-bordered table-striped">
+          <thead>
+          <tr>
+            <th>Blog Başlığı</th>
+            <th>Açıklaması</th>
+            <th>Resim</th>
+            <th>Kategori</th>
+            <th>Aktif Mi Mi</th>
+            <th>Silindi Mi</th>
+            <th>İşlemler</th>
+            
+          </tr>
+          </thead>
+          <tbody>
+            <% if (blogs.length>0) { %>
+              <% blogs.forEach(blog => { %>
+                <tr>
+                  <td><%-blog.title %></td>
+                  <td><%-blog.description %></td>
+                  <td> <img  style="width:75px;height:75px" src="/upload/images/blog-images/<%-blog.imageUrl%>"/></td>
+                  <td><%-blog.categoryId.name %></td>
+                  <td><%-blog.isActive %></td>
+                  <td><%-blog.isDeleted %></td>
+                  <td>
+                    <form action="/blog/delete/<%-blog._id %>?_method=PUT" method="POST">
+                      <button type="submit"  class="btn btn-danger btn-block mb-1"><i class="fas fa-trash"></i> Sil</button> 
+                    </form>
+                    <form action="/blog/edit/<%-blog._id %>?_method=Get" method="POST">
+                      <button type="submit" class="btn btn-success btn-block mb-1"><i class="fas fa-edit"></i> Düzenle</button> 
+                    </form>
+                  </td> 
+                </tr>
+            <% }) %>
+            <% } %>
+
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Blog Başlığı</th>
+            <th>Açıklaması</th>
+            <th>Resim</th>
+            <th>Kategori</th>
+            <th>Aktif Mi Mi</th>
+            <th>Silindi Mi</th>
+            <th>İşlemler</th>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.col -->
+</div>

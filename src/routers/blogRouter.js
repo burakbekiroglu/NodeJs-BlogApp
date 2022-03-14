@@ -7,15 +7,22 @@ const {
     UpdateBlog,
     DeactiveBlog,
     HardDeleteBlog,
-    BlogAddPage
+    BlogAddPage,
+    BlogListPage,
+    DeletedBlogListPage,
+    RestoreBlog,
+    BlogEditPage
 }=require('../controllers/blogController')
 
 
 router.post('/',[upload.single("blogImage")],CreateBlog)
 router.put('/delete/:id',DeleteBlog)
-router.put('/update/:id',UpdateBlog)
+router.put('/update/:id',[upload.single("blogImage")],UpdateBlog)
 router.put('/deactive/:id',DeactiveBlog)
-router.delete('/hard-delete',HardDeleteBlog)
+router.delete('/hard-delete/:id',HardDeleteBlog)
 router.get('/add',BlogAddPage)
-
+router.get('/list',BlogListPage)
+router.get('/deleted/list',DeletedBlogListPage)
+router.put('/restore/:id',RestoreBlog)
+router.get('/edit/:id',BlogEditPage)
 module.exports =router

@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-md-12">
+
+      <div class="col-sm-12">
+        <div class="position-relative" style="min-height: 180px;">
+          <img src="/upload/images/blog-images/<%-blog.imageUrl %>"  class="img-thumbnail">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="row mt-2">       
+    <div class="col-md-12">
+      <div class="card card-warning">
+        <div class="card-header">
+          <h3 class="card-title">Blog Yazısı Düzenle</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <form action="/blog/update/<%-blog._id%>?_method=PUT" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Başlık</label>
+                  <input type="text" name="title" value="<%-blog.title%> " class="form-control" placeholder="Başlık Giriniz ...">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>Açıklama</label>
+                  <textarea name="description"  class="form-control" rows="3" placeholder="Açıklama Giriniz..."><%-blog.description%></textarea>
+                </div>
+              </div>
+             
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>Blog Yazısı</label>
+                  <textarea name="text"  class="form-control" rows="3" placeholder="Enter ..."><%-blog.text%></textarea>
+                </div>
+              </div>
+             
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <!-- select -->
+                <div class="form-group">
+                  <label>Kategoriler</label>
+                  <select class="form-control"  name="categoryId">
+                    <% categories.forEach(category => { %>          
+                      <option class="select" <% if (blog.categoryId==category.id) { %>  selected <% } %> value="<%-category._id  %>"><%-category.name %></option>                  
+                  <% }) %> 
+                  </select>
+                </div>
+              </div>         
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="exampleInputFile">Tanıtım Resmi</label>
+                  <div class="input-group">
+                  <div class="custom-file">
+                  <input type="file" name="blogImage" class="custom-file-input" id="exampleInputFile">
+                  <label class="custom-file-label" for="exampleInputFile">Resim Seç</label>
+                  </div>
+                  <div class="input-group-append">
+                  </div>
+                  </div>
+                  </div>
+              </div>         
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                  <!-- checkbox -->
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" name="isActive"  value="true" type="checkbox">
+                      <label class="form-check-label">Aktif Mi</label>
+                    </div>
+
+                  </div>
+                </div>
+                
+              </div>
+           
+            <div class="row">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-success btn-block"><i class="fas fa-edit"></i> Düzenle</button>
+              </div>         
+            </div>
+            
+
+          </form>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    
+      
+    </div>
+    <!--/.col (right) -->
+  </div>

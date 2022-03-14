@@ -1,6 +1,7 @@
 
 const BlogService = require("../services/BlogService")
 const CategoryService = require("../services/CategoryService")
+const fs = require('fs')
 exports.CreateBlog= async (req, res) => {
     try {
     const blog =req.body
@@ -22,7 +23,7 @@ exports.DeleteBlog= async (req, res) => {
 try {
     
         const result = await BlogService.update(id,{isActive:false,isDeleted:true})
-        res.send("silindi")
+        res.redirect("/blog/list")
    
 } catch (error) {
     res.send("hata")
@@ -33,9 +34,9 @@ exports.HardDeleteBlog= async (req, res) => {
     const id = req.params.id
 
 try {
-    
-        const result = await BlogService.removeBy('_id',id)
-        res.send("silindi")
+        
+        const result = await BlogService.removeBy('_id',id)     
+        res.redirect("/blog/deleted/list")
    
 } catch (error) {
     res.send("hata")
@@ -44,13 +45,26 @@ try {
 
 exports.UpdateBlog= async (req, res) => {
     const id = req.params.id
-    const blog=req.body
 
     try{
-        const Blog= await BlogService.update(id,blog)
-        res.send("guncelleme basarılı")
+        const blog= req.body
+        if(req.file){
+            blog.imageUrl = req.file.filename 
+        } 
+        if(req.body.isActive){
+            blog.isActive=true
+        }else{
+            blog.isActive=false
+        }
+
+        
+
+        const result = await BlogService.update(id,blog)
+
+
+        res.redirect("/blog/list")
     }catch (error) {
-        res.send("error ")
+        res.send(error)
     }
 }
 
@@ -78,4 +92,47 @@ exports.BlogAddPage=async (req, res)=> {
      }
 }
 
+exports.BlogListPage=async (req, res)=> {
+
+    let blogs =await BlogService.queryWithPop({isDeleted:false})  
+    try{
+        res.render("./Admin/Blog/BlogList.ejs",{layout:"./layout/DataTableLayout.ejs",blogs:blogs})
+     }catch (error) {
+         res.redirect("/admin")
+     }
+}
+
+exports.DeletedBlogListPage=async (req, res)=> {
+
+    let blogs =await BlogService.query({isDeleted:true})
+
+    try{
+        res.render("./Admin/Blog/DeletedBlogList.ejs",{layout:"./layout/DataTableLayout.ejs",blogs:blogs})
+     }catch (error) {
+         res.redirect("/admin")
+     }
+}
+exports.RestoreBlog= async (req, res) => {
+    const id  =req.params.id
+    try {
+            const result=await BlogService.update(id,{isDeleted:false})
+            res.redirect("/blog/list")
+    } catch (error) {
+       res.send("error")
+    }
+
+
+}
+
+exports.BlogEditPage=async (req, res)=> {
+    const id  =req.params.id
+    
+    try{
+        const categories = await CategoryService.query({isActive:true,isDeleted:false})
+        const blog =  await BlogService.find(id)
+        res.render("./Admin/Blog/BlogEdit.ejs",{layout:"./layout/AdminLayout.ejs",categories:categories,blog:blog})
+     }catch (error) {
+         res.redirect("/admin")
+     }
+}
 
