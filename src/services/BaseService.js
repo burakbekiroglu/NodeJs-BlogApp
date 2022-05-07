@@ -20,17 +20,26 @@ class BaseService {
     }
   
     async update(id, object) {
-      return this.model.findByIdAndUpdate(id, object)
+      return this.model.findOneAndUpdate({_id: id}, object,{ 
+        runValidators: true, 
+        context: 'query'})
     }
   
     async find(id) {
       return this.model.findById(id)
     }
+    async findOne(id) {
+      return this.model.findOne({_id: id}).exec()
+    }
   
     async query(obj) {
       return this.model.find(obj)
     }
-  
+    
+    async queryWithSort(obj) {
+      return this.model.find(obj).sort({createdAt:-1})
+    } 
+
     async findBy(property, value) {
       return this.model.find({ [property]: value })
     }

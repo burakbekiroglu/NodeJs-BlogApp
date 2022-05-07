@@ -46,8 +46,9 @@ try {
 exports.UpdateBlog= async (req, res) => {
     const id = req.params.id
 
+    
     try{
-        const blog= req.body
+        const blog = await BlogService.findOne(id)
         if(req.file){
             blog.imageUrl = req.file.filename 
         } 
@@ -56,10 +57,13 @@ exports.UpdateBlog= async (req, res) => {
         }else{
             blog.isActive=false
         }
-
+        blog.title=req.body.title
+        blog.description=req.body.description
+        blog.text=req.body.text
+        blog.categoryId=req.body.categoryId
         
 
-        const result = await BlogService.update(id,blog)
+        const result = await blog.save()
 
 
         res.redirect("/blog/list")
@@ -94,7 +98,7 @@ exports.BlogAddPage=async (req, res)=> {
 
 exports.BlogListPage=async (req, res)=> {
 
-    let blogs =await BlogService.queryWithPop({isDeleted:false})  
+    let blogs =await BlogService.queryWithPopAndSort({isDeleted:false},-1)  
     try{
         res.render("./Admin/Blog/BlogList.ejs",{layout:"./layout/DataTableLayout.ejs",blogs:blogs})
      }catch (error) {
@@ -136,3 +140,18 @@ exports.BlogEditPage=async (req, res)=> {
      }
 }
 
+
+exports.BlogShowPage=async (req, res)=> {
+
+    const SeoUrl  =req.params.seoUrl
+    
+    const blog =await BlogService.queryWithPopAndSort({isDeleted:false,isActive:true,seoUrl:SeoUrl},1)  
+    const categories= await CategoryService.load({isDeleted:false,isActive:true})
+    
+    if(blog.length<1) res.redirect("/")
+    try{
+        res.render("./Home/Blog.ejs",{layout:"./layout/HomeLayout.ejs",blog:blog[0],categories})
+     }catch (error) {
+         res.redirect("/")
+     }
+}

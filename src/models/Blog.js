@@ -64,7 +64,7 @@ const blogSchema =  new mongoose.Schema({
 
 blogSchema.pre("validate",  async function(next){
 
-    //
+   
     if(this.title){
         this.seoUrl=  await slugify(this.title,{lower:true,strict:true})
     }

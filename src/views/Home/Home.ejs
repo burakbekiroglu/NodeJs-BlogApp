@@ -7,15 +7,15 @@
             <div class="col-md-8 hot-post-left">
                 <!-- post -->
                 <div class="post post-thumb">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/hot-post-1.jpg" alt=""></a>
+                    <a class="post-img" href="/blog/<%-blogs[0].seoUrl%>"><img src="/upload/images/blog-images/<%-blogs[0].imageUrl%>" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
-                            <a href="category.html">Lifestyle</a>
+                            <a href=""><%-blogs[0].categoryId.name  %> </a>
                         </div>
-                        <h3 class="post-title title-lg"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
+                        <h3 class="post-title title-lg"><a href="/blog/<%-blogs[0].seoUrl%>"><%-blogs[0].title %> </a></h3>
                         <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
+                           
+                            <li><%-blogs[0].createdAt.toLocaleDateString() %> </li>
                         </ul>
                     </div>
                 </div>
@@ -24,15 +24,15 @@
             <div class="col-md-4 hot-post-right">
                 <!-- post -->
                 <div class="post post-thumb">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/hot-post-2.jpg" alt=""></a>
+                    <a class="post-img" href="/blog/<%-blogs[1].seoUrl%>"><img src="/upload/images/blog-images/<%-blogs[1].imageUrl%>" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
-                            <a href="category.html">Lifestyle</a>
+                            <a href=""><%-blogs[1].categoryId.name  %></a>
                         </div>
-                        <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
+                        <h3 class="post-title"><a href="/blog/<%-blogs[1].seoUrl%>"><%-blogs[1].title %></a></h3>
                         <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
+                            
+                            <li><%-blogs[1].createdAt.toLocaleDateString() %> </li>
                         </ul>
                     </div>
                 </div>
@@ -40,16 +40,16 @@
 
                 <!-- post -->
                 <div class="post post-thumb">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/hot-post-3.jpg" alt=""></a>
+                    <a class="post-img" href="/blog/<%-blogs[2].seoUrl%>"><img src="/upload/images/blog-images/<%-blogs[2].imageUrl%>" alt=""></a>
                     <div class="post-body">
                         <div class="post-category">
-                            <a href="category.html">Fashion</a>
-                            <a href="category.html">Lifestyle</a>
+                            <a href=""><%-blogs[2].categoryId.name  %></a>
+                            
                         </div>
-                        <h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
+                        <h3 class="post-title"><a href="/blog/<%-blogs[2].seoUrl%>"><%-blogs[2].title %></a></h3>
                         <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
+                            
+                            <li><%-blogs[2].createdAt.toLocaleDateString() %> </li>
                         </ul>
                     </div>
                 </div>
@@ -95,196 +95,34 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- post -->
-                <div class="post post-row">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/post-13.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-category">
-                            <a href="category.html">Travel</a>
-                            <a href="category.html">Lifestyle</a>
+                <% blogs.forEach(blog => { %>
+                    <div class="post post-row">
+                        <a class="post-img" href="/blog/<%-blog.seoUrl%>"><img style="max-width: 250px; max-height: 250px;" src="/upload/images/blog-images/<%-blog.imageUrl%>" alt="<%-blog.name %> "></a>
+                        <div class="post-body">
+                            <div class="post-category">
+                               
+                                <a href=""><%-blog.categoryId.name%></a>
+                            </div>
+                            <h3 class="post-title"><a href="/blog/<%-blog.seoUrl%>"><%-blog.title  %> </a></h3>
+                            <ul class="post-meta">
+                                
+                                <li><%-blog.createdAt.toLocaleDateString()   %> </li>
+                            </ul>
+                            <p><%-blog.description %></p>  
                         </div>
-                        <h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
-                        <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
                     </div>
-                </div>
+                <% }) %>
+               
                 <!-- /post -->
 
-                <!-- post -->
-                <div class="post post-row">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/post-1.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-category">
-                            <a href="category.html">Travel</a>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                        <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                    </div>
-                </div>
-                <!-- /post -->
-
-                <!-- post -->
-                <div class="post post-row">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/post-5.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-category">
-                            <a href="category.html">Lifestyle</a>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-                        <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                    </div>
-                </div>
-                <!-- /post -->
-
-                <!-- post -->
-                <div class="post post-row">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/post-6.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-category">
-                            <a href="category.html">Fashion</a>
-                            <a href="category.html">Lifestyle</a>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                        <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                    </div>
-                </div>
-                <!-- /post -->
-
-                <!-- post -->
-                <div class="post post-row">
-                    <a class="post-img" href="blog-post.html"><img src="/Home/./img/post-7.jpg" alt=""></a>
-                    <div class="post-body">
-                        <div class="post-category">
-                            <a href="category.html">Health</a>
-                            <a href="category.html">Lifestyle</a>
-                        </div>
-                        <h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-                        <ul class="post-meta">
-                            <li><a href="author.html">John Doe</a></li>
-                            <li>20 April 2018</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
-                    </div>
-                </div>
-                <!-- /post -->
+              
 
                 <div class="section-row loadmore text-center">
-                    <a href="#" class="primary-button">Load More</a>
+                    <a href="#" class="primary-button">Daha Fazla</a>
                 </div>
             </div>
             <div class="col-md-4">
-                <!-- ad widget-->
-                <div class="aside-widget text-center">
-                    <a href="#" style="display: inline-block;margin: auto;">
-                        <img class="img-responsive" src="/Home/./img/ad-3.jpg" alt="">
-                    </a>
-                </div>
-                <!-- /ad widget -->
-
-                
-
-                <!-- category widget -->
-                <div class="aside-widget">
-                    <div class="section-title">
-                        <h2 class="title">Categories</h2>
-                    </div>
-                    <div class="category-widget">
-                        <ul>
-                            <li><a href="#">Lifestyle <span>451</span></a></li>
-                            <li><a href="#">Fashion <span>230</span></a></li>
-                            <li><a href="#">Technology <span>40</span></a></li>
-                            <li><a href="#">Travel <span>38</span></a></li>
-                            <li><a href="#">Health <span>24</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /category widget -->
-
-                <!-- newsletter widget -->
-                <div class="aside-widget">
-                    <div class="section-title">
-                        <h2 class="title">Newsletter</h2>
-                    </div>
-                    <div class="newsletter-widget">
-                        <form>
-                            <p>Nec feugiat nisl pretium fusce id velit ut tortor pretium.</p>
-                            <input class="input" name="newsletter" placeholder="Enter Your Email">
-                            <button class="primary-button">Subscribe</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /newsletter widget -->
-
-                <!-- post widget -->
-                <div class="aside-widget">
-                    <div class="section-title">
-                        <h2 class="title">Popular Posts</h2>
-                    </div>
-                    <!-- post -->
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="/Home/./img/widget-3.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Ne bonorum praesent cum, labitur persequeris definitionem quo cu?</a></h3>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="/Home/./img/widget-2.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Technology</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Mel ut impetus suscipit tincidunt. Cum id ullum laboramus persequeris.</a></h3>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="/Home/./img/widget-4.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Health</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Postea senserit id eos, vivendo periculis ei qui</a></h3>
-                        </div>
-                    </div>
-                    <!-- /post -->
-
-                    <!-- post -->
-                    <div class="post post-widget">
-                        <a class="post-img" href="blog-post.html"><img src="/Home/./img/widget-5.jpg" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="category.html">Health</a>
-                                <a href="category.html">Lifestyle</a>
-                            </div>
-                            <h3 class="post-title"><a href="blog-post.html">Sed ut perspiciatis, unde omnis iste natus error sit</a></h3>
-                        </div>
-                    </div>
-                    <!-- /post -->
-                </div>
-                <!-- /post widget -->
+                <%- include("../partials/Home/_RightBar.ejs")  %> 
             </div>
         </div>
         <!-- /row -->
