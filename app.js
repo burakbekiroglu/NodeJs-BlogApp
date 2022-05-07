@@ -10,15 +10,18 @@ const methodOverride = require('method-override')
 
 
 //Routers
-
 const AdminRouter = require("./src/routers/adminRouter")
 const AuthRouter = require("./src/routers/authRouter")
 const CategoryRouter=require("./src/routers/categoryRouter")
 const BlogRouter = require("./src/routers/blogRouter")
+const HomeRouter = require("./src/routers/homeRouter")
+
 
 
 dotenv.config({ path: './src/config/config.env' });
 connectDB()
+
+//app
 const app = express()
 app.use(methodOverride('_method'))
 app.use(cookieParser())
@@ -37,21 +40,11 @@ app.set("views",path.resolve(__dirname,"./src/views"))
 
 
 
-app.get("/",(req, res) => {
-    res.send("hiiii")
-
-})
+app.get("/",HomeRouter)
 app.use("/admin",AdminRouter)
 app.use("/auth",AuthRouter)
 app.use("/category",CategoryRouter)
 app.use("/blog",BlogRouter)
-
-
-
-
-
-
-
 
 app.use((req,res)=>{
 
