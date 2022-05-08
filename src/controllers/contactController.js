@@ -5,7 +5,7 @@ exports.CreateContact = async (req, res) => {
     try {
         const Contact = await ContactService.insert(contact)
 
-        res.send(contact)
+        return res.redirect("/contact")
 
     } catch (error) {
         return res.redirect("/contact")
@@ -41,7 +41,16 @@ exports.HardDeleteContact = async (req, res) => {
 
 exports.ContactPage = async (req, res) => {
 
+    try{
+        
+       
 
+        res.render("./Home/Contact.ejs",{layout:"./layout/HomeLayout.ejs"
+        
+    })
+    }catch (error) {
+        res.redirect("/")
+    }
 
 }
 

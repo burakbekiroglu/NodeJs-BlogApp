@@ -1,10 +1,7 @@
 const mongoose = require('mongoose')
 
 const contactSchema=new  mongoose.Schema({
-    name: {
-        type:String,
-        required:true
-    },
+    
     email:{
         type:String,
         required:true
@@ -23,10 +20,10 @@ const contactSchema=new  mongoose.Schema({
         default:true
     },
     isDeleted: {
-        type:Boolen,
+        type:Boolean,
         required:true,
         default:false
     }
 },{collection:"contacts",timestamps:true})
 
-module.exports = new mongoose.Model("Contact",contactSchema)
+module.exports = new mongoose.model("Contact",contactSchema)

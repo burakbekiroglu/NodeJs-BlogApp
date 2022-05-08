@@ -16,6 +16,7 @@ const CategoryRouter=require("./src/routers/categoryRouter")
 const BlogRouter = require("./src/routers/blogRouter")
 const HomeRouter = require("./src/routers/homeRouter")
 const AboutRouter = require("./src/routers/aboutRouter")
+const ContactRouter = require("./src/routers/contactRouter")
 
 
 
@@ -47,6 +48,7 @@ app.use("/auth",AuthRouter)
 app.use("/category",CategoryRouter)
 app.use("/blog",BlogRouter)
 app.use("/about",AboutRouter)
+app.use("/contact",ContactRouter)
 app.use((req,res)=>{
 
     res.redirect("/")
