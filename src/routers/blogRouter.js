@@ -12,7 +12,8 @@ const {
     DeletedBlogListPage,
     RestoreBlog,
     BlogEditPage,
-    BlogShowPage
+    BlogShowPage,
+    BlogsPage
 }=require('../controllers/blogController')
 
 
@@ -22,6 +23,8 @@ router.put('/update/:id',[upload.single("blogImage")],UpdateBlog)
 router.put('/deactive/:id',DeactiveBlog)
 router.delete('/hard-delete/:id',HardDeleteBlog)
 
+
+router.get('/blogs',BlogsPage)
 router.get('/add',BlogAddPage)
 router.get('/list',BlogListPage)
 router.get('/deleted/list',DeletedBlogListPage)

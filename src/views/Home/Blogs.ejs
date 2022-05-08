@@ -1,0 +1,72 @@
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-8">
+                
+                <div class="row blog-row">
+                    <div class="col-md-12 section-title-wrapper">
+                        <div class="section-title">
+                            <h2 class="title">Blogs</h2>
+                        </div>
+                    </div>
+                    
+                    <% blogs.forEach(blog => { %>
+
+                       
+                        <div class="col-md-4">
+                            <div class="post post-sm">
+                                <a class="post-img blog-post-img" href="/blog/<%-blog.seoUrl%>"><img src="/upload/images/blog-images/<%-blog.imageUrl%>" style="max-width: 250px; max-height: 250px;"  alt="<%-blog.tittle %>"></a>
+                                <div class="post-body">
+                                    <div class="post-category">
+                                        <a href=""><%-blog.categoryId.name%></a>
+                                    </div>
+                                    <h3 class="post-title title-sm"><a href="/blog/<%-blog.seoUrl%>"><%-blog.title  %></a></h3>
+                                    <ul class="post-meta">
+                                        
+                                        <li><%-blog.createdAt.toLocaleDateString()   %></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                
+                    <!-- /post -->
+
+                    <!-- post -->
+                    
+                    <!-- /post -->
+
+                    <!-- post -->
+                    
+                    <!-- /post -->
+                
+                </div>
+                
+                <div class="section-row">
+                   
+                    
+                    <div class="section-title">
+                        <h3 class="title">Sayfa <%-selectedPage  %> </h3>
+                    </div>
+                    <% if (selectedPage>1) { %>
+                        <a href="/blog/blogs?page=<%-selectedPage-1  %> " class="primary-button">Önceki</a>
+                    <% } %> 
+                    
+                    <% if (selectedPage<=pageCount) { %>
+                        <a href="/blog/blogs?page=<%-selectedPage+1  %> " class="secondary-button">Sonraki</a>
+                    <% } %>            
+            </div>
+                
+            </div>
+            <div class="col-md-4">
+                <%- include("../partials/Home/_RightBar.ejs")  %> 
+            </div>
+        </div>
+        
+        <!-- /row -->
+        
+    </div>
+    <!-- /container -->
+</div>

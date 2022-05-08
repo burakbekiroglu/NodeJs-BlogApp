@@ -170,7 +170,9 @@ figure>figcaption {
 .section-row {
   margin-bottom: 30px;
 }
-
+.section-title-wrapper{
+  width: 100%;
+}
 .section-title {
   position: relative;
   margin-bottom: 20px;
@@ -735,8 +737,11 @@ textarea.input {
 .post .post-img {
   display: block;
   overflow: hidden;
-}
 
+}
+.post .blog-post-img{
+  max-width:250px;
+}
 .post-img>img {
   width: 100%;
   -webkit-transition: 1.6s -webkit-transform;
@@ -757,6 +762,7 @@ textarea.input {
 
 .post .post-title.title-sm {
   font-size: 16px;
+  max-width: 250px;
 }
 
 .post .post-title.title-lg {
@@ -879,7 +885,10 @@ textarea.input {
 .post.post-thumb .post-meta li a {
   color: #fff;
 }
-
+.blog-row{
+  display: flex;
+  flex-wrap: wrap;
+}
 .post.post-thumb .post-meta li a:hover, .post.post-thumb .post-meta li a:focus {
   color: #ee4266;
 }

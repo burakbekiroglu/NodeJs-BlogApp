@@ -43,6 +43,11 @@ class BaseService {
     async findBy(property, value) {
       return this.model.find({ [property]: value })
     }
+    
+    count() {
+      return this.model.countDocuments((count)=>count)
+    }
+    
   }
   
   module.exports = BaseService

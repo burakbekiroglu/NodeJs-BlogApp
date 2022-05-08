@@ -9,6 +9,15 @@ class BlogService extends BaseService {
   }).exec()
   }  
   
+
+  async pagination(obj,sort,limit,skipNumber) {
+    return this.model.find(obj).skip(skipNumber).limit(limit).sort({createdAt:sort}).populate({
+      path:"categoryId",
+      model:"Category"
+  }).exec()
+  }  
+
+
   }
   
   module.exports = new BlogService(Blog)

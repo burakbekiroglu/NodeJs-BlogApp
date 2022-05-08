@@ -155,3 +155,29 @@ exports.BlogShowPage=async (req, res)=> {
          res.redirect("/")
      }
 }
+
+exports.BlogsPage=async (req, res) => {
+    try{
+    let skipNumber=0
+    let selectedPage=1
+
+    if(req.query.page){
+        skipNumber=(9*parseInt(req.query.page))-9
+        selectedPage=req.query.page
+    }
+
+    const blogCount=await await BlogService.count()
+    const blogs=await BlogService.pagination({isDeleted:false,isActive:true},-1,9,skipNumber)
+    const categories= await CategoryService.load({isDeleted:false,isActive:true})
+        
+
+        res.render("./Home/Blogs.ejs",{layout:"./layout/HomeLayout.ejs",
+        blogs,
+        categories,
+        pageCount:parseInt(blogCount/9),
+        selectedPage: parseInt(selectedPage)   
+    })
+    }catch (error) {
+        res.redirect("/")
+    }
+}
