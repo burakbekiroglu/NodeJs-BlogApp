@@ -15,6 +15,7 @@ const AuthRouter = require("./src/routers/authRouter")
 const CategoryRouter=require("./src/routers/categoryRouter")
 const BlogRouter = require("./src/routers/blogRouter")
 const HomeRouter = require("./src/routers/homeRouter")
+const AboutRouter = require("./src/routers/aboutRouter")
 
 
 
@@ -45,10 +46,10 @@ app.use("/admin",AdminRouter)
 app.use("/auth",AuthRouter)
 app.use("/category",CategoryRouter)
 app.use("/blog",BlogRouter)
-
+app.use("/about",AboutRouter)
 app.use((req,res)=>{
 
-    res.send("rota yok")
+    res.redirect("/")
 })
 
 

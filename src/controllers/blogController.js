@@ -98,7 +98,7 @@ exports.BlogAddPage=async (req, res)=> {
 
 exports.BlogListPage=async (req, res)=> {
 
-    let blogs =await BlogService.queryWithPopAndSort({isDeleted:false},-1)  
+    let blogs =await BlogService.queryWithPopAndSort({isDeleted:false},-1,1500)  
     try{
         res.render("./Admin/Blog/BlogList.ejs",{layout:"./layout/DataTableLayout.ejs",blogs:blogs})
      }catch (error) {
