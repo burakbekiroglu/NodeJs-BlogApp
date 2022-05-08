@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">İletişim Kutusu</h3>
+        </div> 
+        <div class="card-body">
+          <table id="categories-table" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>Email</th>
+              <th>Başlık</th>
+              <th>Mesaj</th>
+              <th>Aktif Mi</th>
+              <th>Silindi Mi</th>
+              <th>İşlemler</th>
+              
+            </tr>
+            </thead>
+            <tbody>
+              <% if (contacts.length>0) { %>
+                <% contacts.forEach(contact => { %>
+                  <tr>
+                    <td><%-contact.email %></td>
+                    <td><%-contact.subject %></td>
+                    <td><%-contact.message %></td>
+                    <td><%-contact.isActive %></td>
+                    <td><%-contact.isDeleted %></td>
+                    <td>
+                      <form action="/contact/delete/<%-contact._id %>?_method=PUT" method="POST">
+                        <button type="submit"  class="btn btn-danger btn-block mb-1"><i class="fas fa-trash"></i> Sil</button> 
+                      </form>
+                    </td> 
+                  </tr>
+              <% }) %>
+              <% } %>
+  
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Email</th>
+                <th>Başlık</th>
+                <th>Mesaj</th>
+                <th>Aktif Mi</th>
+                <th>Silindi Mi</th>
+                <th>İşlemler</th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>

@@ -11,7 +11,26 @@ exports.CreateContact = async (req, res) => {
         return res.redirect("/contact")
     }
 }
+exports.ContactListPage=async (req, res)=> {
 
+    let contacts =await ContactService.query({isDeleted:false})
+
+    try{
+        res.render("./Admin/Contact/ContactList.ejs",{layout:"./layout/DataTableLayout.ejs",contacts:contacts})
+     }catch (error) {
+         res.redirect("/admin")
+     }
+}
+exports.DeletedContactListPage=async (req, res)=> {
+
+    let contacts =await ContactService.query({isDeleted:true})
+
+    try{
+        res.render("./Admin/Contact/DeletedContactList.ejs",{layout:"./layout/DataTableLayout.ejs",contacts:contacts})
+     }catch (error) {
+         res.redirect("/contact/deleted/list")
+     }
+}
 exports.DeleteContact = async (req, res) => {
 
     const id = req.params.id
@@ -19,10 +38,10 @@ exports.DeleteContact = async (req, res) => {
     try {
        
           const Contact = await ContactService.update(id,{isActive:false,isDeleted:true})
-            res.send("silindi")
+          res.redirect("/contact/list")
        
     } catch (error) {
-        res.send("error")
+        res.redirect("/admin")
     }
 }
 exports.HardDeleteContact = async (req, res) => {
@@ -32,10 +51,10 @@ exports.HardDeleteContact = async (req, res) => {
     try {
        
           const Contact = await ContactService.removeBy('_id',id)
-            res.send("silindi")
+          res.redirect("/contact/deleted/list")
        
     } catch (error) {
-        res.send("error")
+        res.redirect("/admin")
     }
 }
 
@@ -54,6 +73,18 @@ exports.ContactPage = async (req, res) => {
 
 }
 
+
+exports.RestoreContact= async (req, res) => {
+    const id  =req.params.id
+    try {
+            const result=await ContactService.update(id,{isDeleted:false})
+            res.redirect("/contact/list")
+    } catch (error) {
+        res.redirect("/contact/deleted/list")
+    }
+
+
+}
 
 
 
