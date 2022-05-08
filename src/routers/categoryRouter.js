@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const Auth= require("../middleware/Auth")
 const {
     CreateCategory,
     DeleteCategory,
@@ -13,16 +14,16 @@ const {
 }=require('../controllers/categoryController')
 
 
-    router.post('/',CreateCategory)
-    router.put('/delete/:id',DeleteCategory)
-    router.put('/update/:id',UpdateCategory)
-    router.delete('/hard-delete/:id',HardDeleteCategory)
-    router.get('/add',CategoryAddPage)
-    router.get('/list',CategoryListPage)
-    router.get('/deleted/list',DeletedCategoryListPage)
-    router.put('/restore/:id',RestoreCategory)
+    router.post('/',[Auth],CreateCategory)
+    router.put('/delete/:id',[Auth],DeleteCategory)
+    router.put('/update/:id',[Auth],UpdateCategory)
+    router.delete('/hard-delete/:id',[Auth],HardDeleteCategory)
+    router.get('/add',[Auth],CategoryAddPage)
+    router.get('/list',[Auth],CategoryListPage)
+    router.get('/deleted/list',[Auth],DeletedCategoryListPage)
+    router.put('/restore/:id',[Auth],RestoreCategory)
 
-    router.get('/edit/:id',CategoryEditPage)
+    router.get('/edit/:id',[Auth],CategoryEditPage)
 
 
 
